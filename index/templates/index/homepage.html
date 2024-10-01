@@ -9,31 +9,33 @@
         <!-- Blog Entries Column -->
         <div class="col-12 mt-3 left">
             <div class="row">
-                {% for home in home_list %}
-                <div class="col-md-4">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="image-container">
-                                <div class="image-flash">
-                                    <p class="author">Author: {{ home.author }}</p>
+                <div class="container">
+                    {% for home in home_list %}
+                        <div class="row featurette">
+                            {% if forloop.counter|divisibleby:2 %}
+                                <!-- Even entries -->
+                                <div class="col-md-5">
+                                    <img src="{{ home.image.url }}" alt="{{ home.title }}" class="featurette-image img-responsive">
                                 </div>
-                            </div>
-                            <a href="#" class="post-link">
-                                <h2 class="card-title">{{ home.title }}</h2>
-                            </a>
-
-                            <hr />
-                            <p class="card-text text-muted h6">{{ home.created_on}}
-                            </p>
+                                <div class="col-md-7">
+                                    <h3>{{ home.title }}</h3>
+                                    <p>{{ home.content }}</p>
+                                </div>
+                                <hr class="featurette-divider">
+                            {% else %}
+                                <!-- Odd entries -->
+                                <div class="col-md-7">
+                                    <h3>{{ home.title }}</h3>
+                                    <p>{{ home.content }}</p>
+                                </div>
+                                <div class="col-md-5">
+                                    <img src="{{ home.image.url }}" alt="{{ home.title }}" class="featurette-image img-responsive">
+                                </div>
+                                <hr class="featurette-divider">
+                            {% endif %}
                         </div>
-                    </div>
+                    {% endfor %}
                 </div>
-                {% if forloop.counter|divisibleby:3 %}
-            </div>
-            <div class="row">
-                {% endif %}
-                {% endfor %}
-
             </div>
         </div>
     </div>
