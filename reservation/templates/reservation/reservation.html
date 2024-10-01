@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-4 text-center">
+      <img src="#" width="75%" />
+    </div>
+    <div class="col-8">
+      <!-- Title goes between these h2 tags -->
+      <h2>{{ reservation.title }}</h2>
+      <!-- Content goes directly underneath this -->
+      {{ reservation.content | safe }}
+    </div>
+  </div>
+</div>
+{% endblock content %}
