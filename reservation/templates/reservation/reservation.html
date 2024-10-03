@@ -38,31 +38,32 @@
       </ul>
     </div>
   </div>
-<!-- Displaying Reservations -->
-<div class="row">
-  <div class="col-md-8 card mb-4 mt-3">
-    <h3>Reservations:</h3>
-    <div class="card-body">
-      <!-- Loop through reservations -->
-      {% for reservation in reservations %}
-      <div class="p-2 ReservationRequest 
-        {% if not reservation.approved and reservation.client == user %}faded{% elif not reservation.approved %}d-none{% endif %}">
-        <p class="font-weight-bold">
-          {{ reservation.client.username }} 
-          <!-- Display client's username -->
-        <span class="font-weight-normal">{{ reservation.created_on }}</span> wrote:
-        </p>
-        <div>
-          {{ reservation.details | linebreaks }}
+  <!-- reservations display -->
+  <div class="row">
+    <div class="col-md-8 card mb-4 mt-3">
+      <h3>Your Reservations:</h3>
+      <div class="card-body">
+        <!-- Loop through reservations -->
+        {% for reservation in reservations %}
+        <div class="p-2 ReservationRequest 
+          {% if not reservation.approved %}faded{% elif not reservation.approved %}d-none{% endif %}">
+          <p class="font-weight-bold">
+            {{ reservation.client.username }} 
+            <span class="font-weight-normal">{{ reservation.created_on }}</span> wrote:
+          </p>
+          <div>
+            {{ reservation.details | linebreaks }}
+          </div>
+          {% if not reservation.approved %}
+          <p class="approval">This reservation is awaiting approval</p>
+          {% endif %}
         </div>
-        {% if not reservation.approved and reservation.client == user %}
-        <p class="approval">This reservation is awaiting approval</p>
-        {% endif %}
+        {% empty %}
+        <p>No reservations have been made yet.</p>
+        {% endfor %}
       </div>
-      {% endfor %}
     </div>
   </div>
-</div>
 
 <!-- Creating New Reservation -->
 <div class="col-md-4 card mb-4 mt-3">
@@ -81,3 +82,33 @@
 </div>
 
 {% endblock content %}
+
+
+
+
+
+<!-- Displaying Reservations
+      <div class="row">
+        <div class="col-md-8 card mb-4 mt-3">
+          <h3>Reservations:</h3>
+          <div class="card-body">
+            <!-- Loop through reservations 
+            {% for reservation in reservations %}
+            <div class="p-2 ReservationRequest 
+              {% if not reservation.approved and reservation.client == user %}faded{% elif not reservation.approved %}d-none{% endif %}">
+              <p class="font-weight-bold">
+                {{ reservation.client.username }} 
+                <!-- Display client's username 
+              <span class="font-weight-normal">{{ reservation.created_on }}</span> wrote:
+              </p>
+              <div>
+                {{ reservation.details | linebreaks }}
+              </div>
+              {% if not reservation.approved and reservation.client == user %}
+              <p class="approval">This reservation is awaiting approval</p>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div> -->

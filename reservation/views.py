@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from .models import ReservationContent, ReservationRequest
 from .forms import ReservationForm
 
+@login_required
 def reservation_page(request):
     """
     Renders the Reservation page
@@ -14,8 +15,8 @@ def reservation_page(request):
     # Fetch all reservations content to display
     reservation_display = ReservationContent.objects.all().order_by('-updated_on').first()
     
-    # Only filter approved reservations (status=1 could represent an 'approved' status)
-    # reservations = ReservationRequest.objects.filter(approved=True)
+    # Filter reservations made by the logged-in user
+    user_reservations = ReservationRequest.objects.filter(client=request.user)
 
     # Handle form submission
     if request.method == "POST":
@@ -49,6 +50,7 @@ def reservation_page(request):
         "reservation/reservation.html",
         {
             "reservation_display": reservation_display,
+            "reservations": user_reservations,  # Pass only the user's reservations
             "reservation_form": reservation_form,  # Reservation form to be rendered
         },
     )
