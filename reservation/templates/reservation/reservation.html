@@ -53,13 +53,13 @@
         {% endif %}
       </div>
     </div>
-<!-- reservations display -->
+  <!-- reservations display -->
     <div class="col-6 text-center">
       <h3>Your Reservations:</h3>
       <div class="card-body">
         <!-- Loop through reservations -->
         {% for reservation in reservations %}
-        <div class="p-2 ReservationRequest {% if not reservation.approved %}faded{% elif not reservation.approved %}d-none{% endif %}">
+        <div id="reservation{{ reservation.id }}" class="p-2 ReservationRequest {% if not reservation.approved %}faded{% elif not reservation.approved %}d-none{% endif %}">
           <p class="font-weight-bold">
             {{ reservation.client.username }} 
             <span class="font-weight-normal">{{ reservation.created_on }}</span> wrote:
@@ -72,14 +72,19 @@
             This reservation is awaiting approval
           </p>
           {% endif %}
+          <!-- Edit button -->
+          {% if user.is_authenticated and reservation.client == user %}
+            <button class="btn btn-edit" reservation_id="{{ reservation.id }}">Edit</button>
+          {% endif %}
         </div>
         {% empty %}
         <p>No reservations have been made yet.</p>
         {% endfor %}
       </div>
     </div>
-  
-
-
 </div>
 {% endblock content %}
+
+{% block extras %}
+<script src="{% static 'js/reservations.js' %}"></script>
+{% endblock %}

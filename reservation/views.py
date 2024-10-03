@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from .models import ReservationContent, ReservationRequest
 from .forms import ReservationForm
 
@@ -54,3 +55,27 @@ def reservation_page(request):
             "reservation_form": reservation_form,  # Reservation form to be rendered
         },
     )
+
+
+def reservation_edit(request, reservation_id):
+    """
+    View to edit reservations
+    """
+    if request.method == "POST":
+
+        # Get the reservation object by ID
+        reservation = get_object_or_404(ReservationRequest, pk=reservation_id)
+        reservation_form = ReservationForm(data=request.POST, instance=reservation)
+
+        # Ensure that the reservation belongs to the current logged-in user
+        if reservation_form.is_valid() and reservation.client == request.user:
+            # Save the updated reservation without committing changes to the DB yet
+            reservation = reservation_form.save(commit=False)
+            # Optionally, mark it as unapproved after editing if needed
+            reservation.approved = False
+            reservation.save()  # Save the changes to the DB
+            messages.add_message(request, messages.SUCCESS, 'Reservation Updated!')
+        else:
+            messages.add_message(request, messages.ERROR, 'Error updating reservation!')
+
+    return HttpResponseRedirect(reverse('reservation'))
