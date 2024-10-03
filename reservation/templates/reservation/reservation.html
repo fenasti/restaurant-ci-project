@@ -11,7 +11,6 @@
         <h2>{{ reservation_display.title }}</h2>
       </div>
     </div>
-
     <!-- Content row -->
     <div class="row">
       <div class="col-12 text-center">
@@ -38,15 +37,29 @@
       </ul>
     </div>
   </div>
-  <!-- reservations display -->
-  <div class="row">
-    <div class="col-md-8 card mb-4 mt-3">
+<!-- Creating New Reservation -->
+<div class="row">
+    <div class="col-6 text-center">
+      <div class="card-body">
+        {% if user.is_authenticated %}
+          <h3>Make a Reservation:</h3>
+          <form id="reservationForm" method="post" style="margin-top: 1.3em;">
+          {{ reservation_form | crispy }}
+          {% csrf_token %}
+          <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
+          </form>
+        {% else %}
+          <p>Log in to make a reservation.</p>
+        {% endif %}
+      </div>
+    </div>
+<!-- reservations display -->
+    <div class="col-6 text-center">
       <h3>Your Reservations:</h3>
       <div class="card-body">
         <!-- Loop through reservations -->
         {% for reservation in reservations %}
-        <div class="p-2 ReservationRequest 
-          {% if not reservation.approved %}faded{% elif not reservation.approved %}d-none{% endif %}">
+        <div class="p-2 ReservationRequest {% if not reservation.approved %}faded{% elif not reservation.approved %}d-none{% endif %}">
           <p class="font-weight-bold">
             {{ reservation.client.username }} 
             <span class="font-weight-normal">{{ reservation.created_on }}</span> wrote:
@@ -55,7 +68,9 @@
             {{ reservation.details | linebreaks }}
           </div>
           {% if not reservation.approved %}
-          <p class="approval">This reservation is awaiting approval</p>
+          <p class="approval">
+            This reservation is awaiting approval
+          </p>
           {% endif %}
         </div>
         {% empty %}
@@ -63,52 +78,8 @@
         {% endfor %}
       </div>
     </div>
-  </div>
+  
 
-<!-- Creating New Reservation -->
-<div class="col-md-4 card mb-4 mt-3">
-  <div class="card-body">
-    {% if user.is_authenticated %}
-    <h3>Make a Reservation:</h3>
-    <form id="reservationForm" method="post" style="margin-top: 1.3em;">
-      {{ reservation_form | crispy }}
-      {% csrf_token %}
-      <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
-    </form>
-    {% else %}
-    <p>Log in to make a reservation.</p>
-    {% endif %}
-  </div>
+
 </div>
-
 {% endblock content %}
-
-
-
-
-
-<!-- Displaying Reservations
-      <div class="row">
-        <div class="col-md-8 card mb-4 mt-3">
-          <h3>Reservations:</h3>
-          <div class="card-body">
-            <!-- Loop through reservations 
-            {% for reservation in reservations %}
-            <div class="p-2 ReservationRequest 
-              {% if not reservation.approved and reservation.client == user %}faded{% elif not reservation.approved %}d-none{% endif %}">
-              <p class="font-weight-bold">
-                {{ reservation.client.username }} 
-                <!-- Display client's username 
-              <span class="font-weight-normal">{{ reservation.created_on }}</span> wrote:
-              </p>
-              <div>
-                {{ reservation.details | linebreaks }}
-              </div>
-              {% if not reservation.approved and reservation.client == user %}
-              <p class="approval">This reservation is awaiting approval</p>
-              {% endif %}
-            </div>
-            {% endfor %}
-          </div>
-        </div>
-      </div> -->
