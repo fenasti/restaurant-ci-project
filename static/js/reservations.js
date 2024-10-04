@@ -49,7 +49,6 @@ for (let button of deleteButtons) {
     // Set the href of the delete confirmation link dynamically
     deleteConfirm.href = `/reservation/delete_reservation/${reservationId}`;
     
-    // Optionally log for debugging purposes
     console.log(reservationId);
     
     // Show the modal after setting the href
