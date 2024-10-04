@@ -79,3 +79,21 @@ def reservation_edit(request, reservation_id):
             messages.add_message(request, messages.ERROR, 'Error updating reservation!')
 
     return HttpResponseRedirect(reverse('reservation'))
+
+
+def reservation_delete(request, reservation_id):
+    """
+    View to delete a reservation
+    """
+    # Obtener la reserva por su ID
+    reservation = get_object_or_404(ReservationRequest, pk=reservation_id)
+
+    # Verificar si la reserva pertenece al usuario actual
+    if reservation.client == request.user:
+        reservation.delete()
+        messages.add_message(request, messages.SUCCESS, 'Reservation deleted!')
+    else:
+        messages.add_message(request, messages.ERROR, 'You can only delete your own reservations!')
+
+    # Redirigir a la página de reservas (puedes cambiar el redirect si es necesario)
+    return HttpResponseRedirect(reverse('reservation'))
