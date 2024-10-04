@@ -18,25 +18,7 @@
       </div>
     </div>
 </header>
-    <!-- Authentication Links column -->
-  <div class="row">
-    <div class="col-12 text-center">
-      <ul class="list-inline">
-        {% if user.is_authenticated %}
-            <li class="list-inline-item">
-                <a class="nav-link {% if request.path == logout_url %}active{% endif %}" href="{% url 'account_logout' %}">Logout</a>
-            </li>
-        {% else %}
-            <li class="list-inline-item">
-                <a class="nav-link {% if request.path == signup_url %}active{% endif %}" href="{% url 'account_signup' %}">Register</a>
-            </li>
-            <li class="list-inline-item">
-                <a class="nav-link {% if request.path == login_url %}active{% endif %}" href="{% url 'account_login' %}">Login</a>
-            </li>
-        {% endif %}
-      </ul>
-    </div>
-  </div>
+    
 <!-- Creating New Reservation -->
 <div class="row">
     <div class="col-6 text-center">
