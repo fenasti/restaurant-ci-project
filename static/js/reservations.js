@@ -39,10 +39,20 @@ for (let button of editButtons) {
 * - Displays a confirmation modal (`deleteModal`) to prompt 
 * the user for confirmation before deletion.
 */
+
+
 for (let button of deleteButtons) {
   button.addEventListener("click", (e) => {
+    // Get the reservation ID from the button's reservation_id attribute
     let reservationId = e.target.getAttribute("reservation_id");
-    deleteConfirm.href = `delete_reservation/${reservationId}`;
+    
+    // Set the href of the delete confirmation link dynamically
+    deleteConfirm.href = `/reservation/delete_reservation/${reservationId}`;
+    
+    // Optionally log for debugging purposes
+    console.log(reservationId);
+    
+    // Show the modal after setting the href
     deleteModal.show();
   });
 }

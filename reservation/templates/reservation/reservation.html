@@ -74,8 +74,10 @@
           {% endif %}
           <!-- Edit button -->
           {% if user.is_authenticated and reservation.client == user %}
-            <button class="btn btn-delete" reservation_id="{{ reservation_id }}">Delete</button>
-            <button class="btn btn-edit" reservation_id="{{ reservation.id }}">Edit</button>
+          <button type="button" class="btn btn-danger btn-delete" reservation_id="{{ reservation.id }}" data-bs-toggle="modal" data-bs-target="#deleteModal">
+            Delete
+          </button>
+          <button class="btn btn-edit" reservation_id="{{ reservation.id }}">Edit</button>
           {% endif %}
         </div>
         {% empty %}
