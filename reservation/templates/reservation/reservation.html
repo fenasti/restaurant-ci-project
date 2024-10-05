@@ -91,4 +91,27 @@
 
 {% block extras %}
 <script src="{% static 'js/reservations.js' %}"></script>
+
+<!-- Include your date and time picker scripts -->
+<script type="text/javascript">
+  $(document).ready(function() {
+      // Initialize your datepicker and timepicker
+      $('.datepicker').datepicker({
+          format: 'dd/mm/yyyy',  // Example format
+          autoclose: true
+      });
+
+      $('.timepicker').timepicker({
+          timeFormat: 'h:mm p',
+          interval: 15,
+          minTime: '10:00am',
+          maxTime: '11:00pm',
+          defaultTime: '10:00am',
+          startTime: '10:00',
+          dynamic: false,
+          dropdown: true,
+          scrollbar: true
+      });
+  });
+</script>
 {% endblock %}

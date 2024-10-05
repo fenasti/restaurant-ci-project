@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from .models import ReservationContent, ReservationRequest
 from .forms import ReservationForm
+from django.utils import timezone
+from datetime import datetime
 
 @login_required
 def reservation_page(request):
@@ -24,6 +26,13 @@ def reservation_page(request):
         reservation_form = ReservationForm(data=request.POST)
         if reservation_form.is_valid():
             reservation = reservation_form.save(commit=False)
+            # Combine the date and time into a datetime object
+            reservation_datetime = timezone.datetime.combine(
+                reservation_form.cleaned_data['reservation_date'],
+                reservation_form.cleaned_data['reservation_time']
+            )
+            # Set the reservation datetime
+            reservation.reservation_date_time = reservation_datetime
             # Set the client as the currently logged-in user
             reservation.client = request.user
             reservation.save()

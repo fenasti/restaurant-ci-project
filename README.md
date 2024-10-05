@@ -8,6 +8,8 @@ You can safely delete this README.md file or change it for your own project. Ple
 
 ## Gitpod Reminders
 
+2006-10-25 14:30:59
+
 To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
 
 `python3 -m http.server`
