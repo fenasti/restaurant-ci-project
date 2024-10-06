@@ -2,21 +2,25 @@
 {% block content %}
 {% load static %}
 <header class="p-4 my-2 bg-light rounded-3 hero" style="background-image: url('{{ about.featured_image.url }}')">
-  <div class="container fluid">
+  <div class="container fluid text-white">
       <!-- Title goes between these h2 tags -->
       <h2>{{ about.title }}</h2>
+      <p>
+        We want to share with you the effort of our work. 
+        Passion and joy drive everything we do.
+      </p>
   </div>
 </header>
 <div class="container">
   <div class="row featurette">
-    <div class="col-4 image-container">
+    <div class="col-md-5 image-container d-none d-md-block">
       {% if "placeholder" in about.content_image.url %}
       <img class="card-img-top" src="{% static 'images/nobody 2.jpg' %}" alt="placeholder image">
       {% else %}
       <img class="card-img-top" src=" {{ about.content_image.url }}" alt="{{ about.title }}">
       {% endif %}
     </div>
-    <div class="col-8 text-right">
+    <div class="col-md-7 text-right">
       <!-- Content goes directly underneath this -->
       <p>{{ about.content | safe }}</p>
     </div>
