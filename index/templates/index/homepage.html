@@ -9,15 +9,15 @@
         {% if forloop.counter|divisibleby:2 %}
             <!-- Odd entries -->
             <div class="row">
-                <div class="col-md-7">
-                    <h3>{{ home.title }}</h3>
-                    <p>{{ home.content }}</p>
+                <div class="col-md-7 mx-auto">
+                    <h3 class="home-row">{{ home.title }}</h3>
+                    <p>{{ home.content | safe }}</p>
                 </div>
                 <div class="col-md-5">
                     <img src="{{ home.featured_image.url }}" alt="{{ home.title }}" class="img-fluid featurette-img">
                 </div>
             </div>
-            <hr class="featurette-divider">
+            
         {% else %}
            <!-- Even entries -->
             <div class="row bkgrnd-color">
@@ -25,14 +25,14 @@
                     <img src="{{ home.featured_image.url }}" alt="{{ home.title }}" class="img-fluid featurette-img">
                 </div>
                 <div class="col-md-7 text-white">
-                    <h3>{{ home.title }}</h3>
-                    <p>{{ home.content }}</p>
+                    <h3 class="home-row">{{ home.title }}</h3>
+                    <p>{{ home.content | safe }}</p>
                     <a class="nav-link {% if request.path == reservation_url %}active{%endif%}" aria-current="page" href="{% url 'reservation' %}">
                         <button type="button" class="btn btn-success btn-lg">Reservations</button>
                     </a>
                 </div>
             </div>
-            <hr class="featurette-divider">
+            
         {% endif %}
     {% endfor %}            
 </div>
