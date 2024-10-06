@@ -18,6 +18,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Qwitcher+Grypen&display=swap" rel="stylesheet">
 
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -35,7 +38,8 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}">LOGO</a>
+            <a class="navbar-brand text-center" href="{% url 'home' %}"><img src="{% static 'images/Flamingo-logo.png' %}" alt="Flamingo Terrace Logo"> <h1 class="nav-style">Flamingo Terrace</h1></a>
+            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -59,9 +63,15 @@
                             <ul class="list-inline">
                                 {% if user.is_authenticated %}
                                     <li class="list-inline-item">
+                                        <p class="text-end m-3">You are logged in as {{ user }}</p>
+                                    </li>
+                                    <li class="list-inline-item">
                                         <a class="nav-link {% if request.path == logout_url %}active{% endif %}" href="{% url 'account_logout' %}">Logout</a>
                                     </li>
                                 {% else %}
+                                    <li class="list-inline-item">
+                                        <p class="text-end m-3">You are not logged in</p>
+                                    </li>
                                     <li class="list-inline-item">
                                         <a class="nav-link {% if request.path == signup_url %}active{% endif %}" href="{% url 'account_signup' %}">Register</a>
                                     </li>
@@ -92,15 +102,11 @@
         </div>
     </div>
     <main class="flex-shrink-0 main-bg">
-        {% if user.is_authenticated %}
-        <p class="text-end m-3">You are logged in as {{ user }}</p>
-        {% else %}
-        <p class="text-end m-3">You are not logged in</p>
-        {% endif %}
 
         {% block content %}
 
         <!-- Content Goes here -->
+
         {% endblock content %}
 
     </main>
