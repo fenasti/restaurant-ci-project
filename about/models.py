@@ -8,6 +8,7 @@ class About(models.Model):
     content = models.TextField()
     updated_on = models.DateTimeField(auto_now=True)
     featured_image = CloudinaryField('image', default='placeholder')
+    content_image = CloudinaryField('image', default='placeholder')
     
 
     def __str__(self):

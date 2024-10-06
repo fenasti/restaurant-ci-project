@@ -1,32 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-<div class="row">
-  <div class="col-12 text-center">
-    <div class="image-container"></div>
-      {% if "placeholder" in post.featured_image.url %}
-      <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
-      {% else %}
-      <img class="card-img-top" src=" {{ about.featured_image.url }}" alt="{{ about.title }}">
-      {% endif %}
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-8">
-    <div class="image-container">
-      {% if "placeholder" in post.featured_image.url %}
-      <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
-      {% else %}
-      <img class="card-img-top" src=" {{ about.featured_image.url }}" alt="{{ about.title }}">
-      {% endif %}
-    </div>
-  </div>
-  <div class="col-4 text-right">
+<header class="p-4 my-2 bg-light rounded-3 hero" style="background-image: url('{{ about.featured_image.url }}')">
+  <div class="container fluid">
       <!-- Title goes between these h2 tags -->
       <h2>{{ about.title }}</h2>
+  </div>
+</header>
+<div class="container">
+  <div class="row featurette">
+    <div class="col-4 image-container">
+      {% if "placeholder" in about.content_image.url %}
+      <img class="card-img-top" src="{% static 'images/nobody 2.jpg' %}" alt="placeholder image">
+      {% else %}
+      <img class="card-img-top" src=" {{ about.content_image.url }}" alt="{{ about.title }}">
+      {% endif %}
+    </div>
+    <div class="col-8 text-right">
       <!-- Content goes directly underneath this -->
       <p>{{ about.content | safe }}</p>
+    </div>
   </div>
 </div>
 {% endblock content %}

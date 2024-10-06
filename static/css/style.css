@@ -13,6 +13,11 @@ h3 {
     color: #E84610;
 }
 
+.hero {
+    background-size: cover; 
+    background-position: center;
+}
+
 .thin {
     font-weight: 300;
 }
