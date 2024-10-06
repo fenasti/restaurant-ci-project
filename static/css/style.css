@@ -17,6 +17,11 @@ h3 {
     color: #E94578;
 }
 
+a {
+    text-decoration: none;
+    outline: none; 
+}
+
 /* Change the font color of the navigation links */
 
 .navbar-light .nav-link {
@@ -53,6 +58,10 @@ h3 {
     padding-top: 40px;
 }
 
+.bold {
+    font-weight: bolder;
+}
+
 .thin {
     font-weight: 300;
 }
@@ -78,44 +87,18 @@ h3 {
     position: relative;
 }
 
-.image-flash {
-    position: absolute;
-    bottom: 5%;
-    min-width: 30%;
-    left: -2px;
-    background-color: #188181;
-}
 
 .scale {
     width: 100%;
     height: auto;
 }
 
-.author {
-    color: white;
-    margin: 4px;
-    text-transform: uppercase;
-}
-
-.post-link {
-    text-decoration: none;
-    color: #445261;
-}
 
 .post-link:hover,
 .page-link {
     color: #E84610;
 }
 
-.post-title {
-    margin-top: 10%;
-    margin-left: 5%;
-}
-
-.post-subtitle {
-    margin-left: 5%;
-    color: lightgray;
-}
 
 .btn-signup,
 .btn-edit {

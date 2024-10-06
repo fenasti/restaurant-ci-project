@@ -44,11 +44,16 @@
         <div id="reservation{{ reservation.id }}" class="p-2 ReservationRequest {% if not reservation.approved %}faded{% elif not reservation.approved %}d-none{% endif %}">
           <p class="font-weight-bold">
             {{ reservation.client.username }} 
-            <span class="font-weight-normal">{{ reservation.created_on }}</span> wrote:
+            your reservation is scheduled for the
+            <span class="font-weight-normal">
+              {{ reservation.reservation_date }}
+            </span> 
           </p>
-          <div>
-            {{ reservation.details | linebreaks }}
-          </div>
+          <p>details:
+            <div>
+              {{ reservation.details | linebreaks }}
+            </div>
+          </p>
           {% if not reservation.approved %}
           <p class="approval">
             This reservation is awaiting approval
@@ -92,12 +97,12 @@
 {% block extras %}
 <script src="{% static 'js/reservations.js' %}"></script>
 
-<!-- Include your date and time picker scripts -->
+<!-- Include date and time picker scripts -->
 <script type="text/javascript">
   $(document).ready(function() {
       // Initialize your datepicker and timepicker
       $('.datepicker').datepicker({
-          format: 'dd/mm/yyyy',  // Example format
+          format: 'dd/mm/yyyy',  
           autoclose: true
       });
 

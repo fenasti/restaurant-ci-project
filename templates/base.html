@@ -10,7 +10,7 @@
 <html class="h-100" lang="en">
 
 <head>
-    <title>Restaurant
+    <title>Flamingo Terrace
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -30,6 +30,9 @@
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/Flamingo-logo.png' %}" type="image/x-icon">
 
 </head>
 
@@ -52,8 +55,11 @@
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == about_url %}active{%endif%}" aria-current="page" href="{% url 'about' %}">About Us</a>
                     </li>
-                    <li class="nav-item"></li>
+                    <li class="nav-item">
                         <a class="nav-link {% if request.path == reservation_url %}active{%endif%}" aria-current="page" href="{% url 'reservation' %}">Reservations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% static 'pdf/menu.pdf' %}" target="_blank" download>Menu</a>
                     </li>
                 </ul>
                 <span class="navbar-text">
@@ -127,10 +133,18 @@
                 </div>
                 <div class="col">
                     <p class="m-0 text-center text-white">Follow us: 
-                        <i class="fab fa-facebook-square ms-3"></i>
-                        <i class="fab fa-twitter-square ms-3"></i>
-                        <i class="fab fa-instagram-square ms-3"></i>
-                        <i class="fab fa-youtube-square ms-3"></i>
+                        <a href="https://www.facebook.com/" target="_blank">
+                            <i class="fa-brands fa-square-facebook ms-3"></i>
+                        </a>
+                        <a href="https://www.twitter.com/" target="_blank">
+                            <i class="fab fa-twitter-square ms-3"></i>
+                        </a>
+                        <a href="https://www.instagram.com/" target="_blank">
+                            <i class="fab fa-instagram-square ms-3"></i>
+                        </a>
+                        <a href="https://www.youtube.com/" target="_blank">
+                            <i class="fab fa-youtube-square ms-3"></i>
+                        </a>
                     </p>
                 </div>
             </div>
