@@ -9,4 +9,4 @@ class ReservationForm(forms.ModelForm):
 
     class Meta:
         model = ReservationRequest
-        fields = ['details', 'reservation_date', 'reservation_time']  # Include your fields here
+        fields = ['details', 'reservation_date', 'reservation_time'] 
