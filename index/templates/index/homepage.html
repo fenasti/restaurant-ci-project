@@ -14,14 +14,14 @@
                     <p>{{ home.content | safe }}</p>
                 </div>
                 <div class="col-md-5">
-                    <img src="{{ home.featured_image.url }}" alt="{{ home.title }}" class="img-fluid featurette-img">
+                    <img src="{{ home.featured_image.url }}" alt="{{ home.title }}" class="img-fluid featurette-img scale">
                 </div>
             </div>
         {% else %}
            <!-- Even entries -->
             <div class="row bkgrnd-color">
                 <div class="col-md-5">
-                    <img src="{{ home.featured_image.url }}" alt="{{ home.title }}" class="img-fluid featurette-img">
+                    <img src="{{ home.featured_image.url }}" alt="{{ home.title }}" class="img-fluid featurette-img scale">
                 </div>
                 <div class="col-md-7 text-white">
                     <h3 class="home-row">{{ home.title }}</h3>

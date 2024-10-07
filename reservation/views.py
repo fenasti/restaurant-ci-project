@@ -8,16 +8,17 @@ from .forms import ReservationForm
 from django.utils import timezone
 from datetime import datetime
 
+
 @login_required
 def reservation_page(request):
     """
     Renders the Reservation page
     reservation_display = page content
-    ReservationRequest = form 
+    ReservationRequest = form
     """
     # Fetch all reservations content to display
     reservation_display = ReservationContent.objects.all().order_by('-updated_on').first()
-    
+
     # Filter reservations made by the logged-in user
     user_reservations = ReservationRequest.objects.filter(client=request.user)
 
@@ -104,5 +105,5 @@ def reservation_delete(request, reservation_id):
     else:
         messages.add_message(request, messages.ERROR, 'You can only delete your own reservations!')
 
-    # Redirigir a la página de reservas (puedes cambiar el redirect si es necesario)
+    # Redirigir a la página de reservas
     return HttpResponseRedirect(reverse('reservation'))

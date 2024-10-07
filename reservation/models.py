@@ -24,5 +24,7 @@ class ReservationRequest(models.Model):
         ordering = ["created_on"]
 
     def __str__(self):
-        return f"Reservation request from {self.client.email} for the {self.reservation_date} at {self.reservation_time}"
-    
+        return (
+            f"Reservation request from {self.client.email} for the "
+            f"{self.reservation_date} at {self.reservation_time}"
+        )
