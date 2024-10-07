@@ -17,6 +17,10 @@ h3 {
     color: #E94578;
 }
 
+p {
+    font-family: Lato, Roboto, sans-serif;
+}
+
 a {
     text-decoration: none;
     outline: none; 
