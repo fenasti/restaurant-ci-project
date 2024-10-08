@@ -2,6 +2,8 @@
 
 <img src="static/images/readme/logo.png">
 
+Visit the deployed site: https://restaurant-pp4-fbc429f02210.herokuapp.com/
+
 ## Introduction
 
 To begin the presentation of this project, I will take the liberty of sharing a bit about my life first. I am a chef; that has been my profession for at least the last 10 years of my life. It's quite far from programming, but both have something in common: they are great tools for building things.
@@ -29,6 +31,8 @@ The project began with the ideation phase, during which I outlined on paper the 
 - Reservations app and template with a form to request a reservation.
 - An about.html where is some information of the restaurant.
 - Access to a web version of the menu.
+
+<img src="static/images/readme/home-page.png">
 
 I decided to separate it in 3 main url link paths and to provide the menu as a donwload pdf link also in the nav-bar.
 As the Signup, Signin and Logout pages and all the client user functions would be exclusive related to the Reservation view, i solved to blend and display all together in the same place with conditional URL paths.
@@ -80,6 +84,8 @@ Migrate any new changes and use the makemigrations command.
 #### Forms:
 To handle forms within your app, start by creating a forms.py file. Define your forms as classes that accept model fields as requirements.
 
+<img src="static/images/readme/reservtions-page.png">
+
 #### Admin Registration:
 To utilize Django's admin features, you must also register your models in admin.py within your app. This registration allows you to manage your models through the Django admin interface.
 
@@ -87,15 +93,29 @@ To utilize Django's admin features, you must also register your models in admin.
  
 My project consists of three main apps: **About, Index y Reservation**.
 
+<img src="static/images/readme/about-page.png">
+
 The **About** and **Index** models are quite similar and can be defined more as content models, where the title, text, and images in each template can be altered from the superuser access. Their only difference is that the **About** app uses a function-based view because it wasn't planned to hold too much content.
 
 In contrast, the **Index** app utilizes a class-based view, allowing for extension, where each post functions as a whole. In the template, it loops through each created model, displaying one on one side and the other as a mirror image on the opposite side.
+
+<img src="static/images/readme/home-page-2.png">
 
 Both are entirely customizable from the admin page, and thanks to the **Sommernote** plugin, the displayed texts can be edited dynamically with greater ease.
 
 The **Reservation** app, in contrast, is the one that holds most of the project's functionality. It consists of two main models: the **ReservationContent** class, which is similar to the other two mentioned earlier and serves solely to display content, and the **ReservationRequest**, which provides the necessary fields for authentication and the ability to perform CRUD operations (Create, Read, Update, Delete) on reservation requests.
 
+<img src="static/images/readme/sign-in.png">
+
+The approval of the reservation is made by the admin in the adminpage by the checklist approved model field and it shows the reservation now without the fade class. The metadata in the **ReservationRequest** model gives all the neccesary information to contact the client back and to schedule the requested datetime.
+
+<img src="static/images/readme/admin-reservetion-meta.png">
+<img src="static/images/readme/reservation-aproval.png">
+
 I decided to use the Comment model's base relationship from the walkthrough blog project and adapt it to only display reservations to the logged-in user. Permission for editing and deleting reservations is also restricted to users, and these actions are only possible if the user is logged in.
+
+<img src="static/images/readme/reservation-edit.png">
+<img src="static/images/readme/delete-modal.png">
 
 | Field             | Type                 |
 |:-----------------:|:--------------------:|
@@ -137,6 +157,10 @@ The only relation is with the user that is named as client, if this is deleted, 
 
 - Whitenoise: A middleware that helps serve static files directly from Django in production environments like Heroku.
 
+## Testing
+
+Please refer to [TESTING.md](TESTING.md)
+
 ## Problems / Bugs
 
 ### #1
@@ -155,6 +179,8 @@ I couldn't visualize the view of my Home model, this was because the template pr
 After a whole day trying to implement the callendar input i decided to come back to the main stage using the command **"git log"** to view my later logs and as i didn't commit during the whole time because there were no succesfull stages, i used the command **"git checkout --."** and came back to the previous stage.
 First i tried to use an extension called Tempus Dominus but it was too complicated to install thru all the JavaScript and all the metadata needed. The main problem was that afer to be able to show a callendar input, the data was given all date and time together and somehow the default format couldn't accept it in any way i tried, even changing the default format to many different acceptance criterias.
 After returning to the previous stage i decided to separate the specifications input to both time and date respectively separated and combine them afterwards to use them as the database reservation_datetime object required.
+
+<img src="static/images/readme/date-picker.png">
 
 ## Future implementations
 
@@ -184,8 +210,26 @@ As shown in my Agile project board there were 3 functions that were way out of m
 
 ## Credits
 
+### Tutorials
 
+- https://www.youtube.com/watch?v=pEwA4-Mmnj8
 
+- https://djangotricks.blogspot.com/2019/10/working-with-dates-and-times-in-forms.html
 
+- https://getbootstrap.com/docs/5.3/getting-started/introduction/
+Basically all the documentation created by the Bootstrap comunity is very useful and gentle for the user.
 
+### Inspirational projects
+
+- https://github.com/kera-cudmore/TheQuizArms?tab=readme-ov-file#testing
+
+- https://github.com/markdaniel1982/MD82-P4/tree/main
+
+- Of course the Codestar Blog project provided by Code Institute wich was very fun to make and understand.
+
+- https://crumber.com
+I'm not quite sure how I came across this webpage, but its simplicity served as great inspiration for the design of this project.
+
+- https://www.rolls-berlin.de
+An example of a real restaurant webpage, as a curious fact i worked with the owners of this business and they are beautiful people and they serve delicious food.
 
