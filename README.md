@@ -75,26 +75,67 @@ URL Configuration: Create a urls.py file within your app (it doesn’t come by d
 
 Template Setup: Implement the URLs in the base.html template and create the respective HTML templates in the appropriate templates folder. These templates will be rendered from your views.
 
+Migrate any new changes and use the makemigrations command.
+
 #### Forms:
 To handle forms within your app, start by creating a forms.py file. Define your forms as classes that accept model fields as requirements.
 
 #### Admin Registration:
 To utilize Django's admin features, you must also register your models in admin.py within your app. This registration allows you to manage your models through the Django admin interface.
 
+## Project description
+ 
+My project consists of three main apps: **About, Index y Reservation**.
 
+The **About** and **Index** models are quite similar and can be defined more as content models, where the title, text, and images in each template can be altered from the superuser access. Their only difference is that the **About** app uses a function-based view because it wasn't planned to hold too much content.
 
+In contrast, the **Index** app utilizes a class-based view, allowing for extension, where each post functions as a whole. In the template, it loops through each created model, displaying one on one side and the other as a mirror image on the opposite side.
 
+Both are entirely customizable from the admin page, and thanks to the **Sommernote** plugin, the displayed texts can be edited dynamically with greater ease.
 
+The **Reservation** app, in contrast, is the one that holds most of the project's functionality. It consists of two main models: the **ReservationContent** class, which is similar to the other two mentioned earlier and serves solely to display content, and the **ReservationRequest**, which provides the necessary fields for authentication and the ability to perform CRUD operations (Create, Read, Update, Delete) on reservation requests.
 
+I decided to use the Comment model's base relationship from the walkthrough blog project and adapt it to only display reservations to the logged-in user. Permission for editing and deleting reservations is also restricted to users, and these actions are only possible if the user is logged in.
 
+| Field             | Type                 |
+|:-----------------:|:--------------------:|
+| client            | ForeignKey(User)     |
+| email             | EmailField           |
+| details           | TextField            |
+| reservation_date  | DateField            |
+| reservation_time  | TimeField            |
+| created_on        | DateTimeField        |
+| approved          | BooleanField         |
 
+The only relation is with the user that is named as client, if this is deleted, all the reservations related to the client will be erased on cascade  afterwards.
 
+## Technologies
 
+### Programming Languages and Frameworks
 
+- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+- [CSS](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics)
+- [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
+- [Django](https://www.djangoproject.com/)
+- [Bootstrap](https://getbootstrap.com/)
 
+### Main packages in the requirements.txt file
 
+- Cloudinary: used for managing media (like images) in Django projects.
 
+- Dj-database-url: used for deployment to Heroku.
 
+- Django-allauth: An app for handling user authentication, registration, account management, and logins.
+
+- Django-crispy-forms: A Django package that helps with creating dynamic and styled forms
+
+- Django-summernote: Editor for the Django admin that allows rich-text editing.
+
+- Gunicorn: Python translator for running Django applications in production environments.
+
+- Psycopg: A PostgreSQL adapter for Python, allowing Django to interact with a PostgreSQL database.
+
+- Whitenoise: A middleware that helps serve static files directly from Django in production environments like Heroku.
 
 ## Problems / Bugs
 
@@ -111,9 +152,39 @@ When creating the superuser and migrate the first modelof Django, I deployed the
 I couldn't visualize the view of my Home model, this was because the template provided in the class view of the index app was not written as a relative path.
 
 ### #5
-After a whole day trying to implement the callendar input i decided to come back to the main stage using the command "git log" to view my later logs and as i didn't commit during the whole time because there were no succesfull stages, i used the command "git checkout --." and came back to the previous stage.
-First i tried to use an extension called Tempus Dominus nut it was too complicated to install thru all the JavaScript and all the metadata needed. The main problem was that afer to be able to show a callendar input, the data was given all date and time together and somehow the default format couldn't accept it in any way i tried. Changing the default format to many different acceptance criterias.
-After returning to the previous stage i decided to separate the specifications input to both time and date respectively and combine them afterwards to use them as the database reservation_datetime object required.
+After a whole day trying to implement the callendar input i decided to come back to the main stage using the command **"git log"** to view my later logs and as i didn't commit during the whole time because there were no succesfull stages, i used the command **"git checkout --."** and came back to the previous stage.
+First i tried to use an extension called Tempus Dominus but it was too complicated to install thru all the JavaScript and all the metadata needed. The main problem was that afer to be able to show a callendar input, the data was given all date and time together and somehow the default format couldn't accept it in any way i tried, even changing the default format to many different acceptance criterias.
+After returning to the previous stage i decided to separate the specifications input to both time and date respectively separated and combine them afterwards to use them as the database reservation_datetime object required.
+
+## Future implementations
+
+As shown in my Agile project board there were 3 functions that were way out of my knowledge to implement.
+
+- An automatic response when the reservation is possible due a callendar which has all the schedulled reservations and which can provide inmediate response when a spot is free or taken.
+
+- Email confirmation with an autogenerated template with the details of the reservation that is sended to the client mail adress.
+
+- A Google maps API that shows the exact location of the restaurant in the about page.
+
+## Deployment
+
+- Installing the requiremnts packages like gunicorn and whitenoise.
+
+- Create the Heroku app and link it to the github repository.
+
+- Add heroku to ALLOWED_HOST and the packages as middelware.
+
+- Create the Procfile.
+
+- Add any variable required in the var setting in Heroku as the password or the postgress url.
+
+- Use collect static for deployments when debug is set to False.
+
+- Manually deploy from the branch in the Deploy link from the app.
+
+## Credits
+
+
 
 
 
