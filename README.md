@@ -6,7 +6,7 @@ Visit the deployed site: https://restaurant-pp4-fbc429f02210.herokuapp.com/
 
 ## Introduction
 
-To begin the presentation of this project, I will take the liberty of sharing a bit about my life first. I am a chef; that has been my profession for at least the last 10 years of my life. It's quite far from programming, but both have something in common: they are great tools for building things.
+To begin the presentation of this project, I will take the liberty of sharing a bit about my life first. I am a cook; that has been my profession for at least the last 10 years of my life. It's quite far from coding, but both have something in common: they are great tools for building things.
 
 I can no longer keep working in a kitchen, so I had to seek a different path. I never got to have my own restaurant; perhaps in the future it will exist physically, but for now, you can visit it online.
 
